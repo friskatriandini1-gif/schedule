@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Checklist Belajar TKA</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3f6fb;--card:#fff;--tx:#1b2433;--mut:#6b778c;--bd:#e3e8f0;--hd:#1f3864;--hd2:#2f5597}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1520;--card:#18202e;--tx:#e8edf6;--mut:#93a0b5;--bd:#27324a;--hd:#13203d;--hd2:#1d3363}}
+:root[data-theme="dark"]{--bg:#0f1520;--card:#18202e;--tx:#e8edf6;--mut:#93a0b5;--bd:#27324a;--hd:#13203d;--hd2:#1d3363}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,var(--hd),var(--hd2));color:#fff;padding:22px 16px 26px;text-align:center}
+header h1{margin:0;font-size:20px}header p{margin:4px 0 14px;font-size:13px;opacity:.85}
+.ring{position:relative;width:130px;height:130px;margin:0 auto}
+.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:11;stroke-linecap:round}
+#arc{stroke:#7CFC9A;transition:stroke-dashoffset .8s cubic-bezier(.2,.8,.2,1)}
+.ring .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:30px;font-weight:700}
+.ring .num small{font-size:11px;font-weight:400;opacity:.8}
+.stats{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.14);border-radius:12px;padding:8px 14px;font-size:12px}
+.stat b{display:block;font-size:18px}
+#badge{margin-top:12px;font-size:13px;min-height:18px}
+main{max-width:760px;margin:0 auto;padding:14px 12px 40px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+.chip{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:20px;padding:7px 13px;font-size:12px;cursor:pointer;transition:.2s}
+.chip.on{background:var(--hd2);color:#fff;border-color:var(--hd2);transform:scale(1.05)}
+.wk{margin:18px 4px 8px;font-size:13px;font-weight:700;color:var(--mut);display:flex;justify-content:space-between}
+.card{--c:#1F4E79;display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--bd);border-left:6px solid var(--c);border-radius:14px;padding:12px;margin-bottom:9px;cursor:pointer;transition:transform .2s,box-shadow .2s,opacity .3s;animation:in .5s both}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card.today{box-shadow:0 0 0 2px var(--c);animation:in .5s both,pulse 2s 1s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 25%,transparent)}}
+.card.done{opacity:.62}
+.card.done .mp,.card.done .tg{text-decoration:line-through}
+.ck{flex:none;width:30px;height:30px;border-radius:50%;border:2.5px solid var(--c);display:flex;align-items:center;justify-content:center;transition:.3s}
+.ck svg{width:18px;height:18px;stroke:#fff;stroke-width:3.5;fill:none;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .4s .1s}
+.done .ck{background:var(--c);transform:scale(1.12)}
+.done .ck svg{stroke-dashoffset:0}
+.info{flex:1;min-width:0}
+.dt{font-size:11px;color:var(--mut)}
+.mp{font-weight:700;color:var(--c);font-size:15px;margin:1px 0}
+.mt{font-size:13px;line-height:1.35}
+.tg{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:#fff;background:var(--c);border-radius:10px;padding:3px 9px}
+.td{flex:none;font-size:10px;font-weight:700;color:#fff;background:#e5484d;border-radius:8px;padding:3px 6px}
+.nb{flex:none;border:0;background:transparent;font-size:19px;cursor:pointer;opacity:.4;transition:.2s;padding:6px}.nb:hover{opacity:.9;transform:scale(1.15)}.nb.has{opacity:1;filter:drop-shadow(0 0 4px var(--c))}
+.nt{margin-top:9px}.nta{width:100%;min-height:76px;resize:vertical;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:16px Arial,Helvetica,sans-serif;padding:9px;animation:in .3s both}.nta:focus{outline:2px solid var(--c)}
+.tm{margin-top:9px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}.bar{flex:1 1 100%;height:9px;border-radius:6px;background:var(--bd);overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--c);border-radius:6px;transition:width .6s}.bar.ok i{background:#2eb872}.tt{font-size:12px;font-weight:700;margin-right:auto}.tb{border:1px solid var(--c);background:transparent;color:var(--c);border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer;transition:.2s}.tb.run{background:var(--c);color:#fff;animation:pulse 1.6s infinite}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:#1b2433;color:#fff;padding:11px 18px;border-radius:24px;font-size:13px;opacity:0;transition:.35s;z-index:60;max-width:90%;text-align:center;pointer-events:none}#toast.show{opacity:1;transform:translate(-50%,0)}
+.foot{flex-wrap:wrap;display:flex;gap:8px;justify-content:center;margin-top:20px}
+.foot button{border:1px solid var(--bd);background:var(--card);color:var(--mut);border-radius:10px;padding:8px 14px;font-size:12px;cursor:pointer}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header>
+<h1>🎯 Checklist Belajar TKA</h1>
+<p>SMA Taruna Nusantara · 19 Oktober – 15 November 2026<br>Wajib belajar minimal 3 jam setiap hari</p>
+<div class="ring"><svg width="130" height="130"><circle cx="65" cy="65" r="56" stroke="rgba(255,255,255,.2)"/><circle id="arc" cx="65" cy="65" r="56" stroke-dasharray="351.86" stroke-dashoffset="351.86"/></svg>
+<div class="num"><span id="pct">0%</span><small id="frac">0/28 target</small></div></div>
+<div class="stats"><div class="stat"><b id="streak">0</b>🔥 streak</div><div class="stat"><b id="left">0</b>⏳ hari lagi</div><div class="stat"><b id="rem">0</b>📌 sisa target</div><div class="stat"><b id="tdy">0j 0m</b>⏱ hari ini</div></div>
+<div id="badge"></div>
+</header>
+<main><div class="chips" id="chips"></div><div id="list"></div>
+<div class="foot"><button id="go">📍 Ke hari ini</button><button id="reset">↺ Reset</button><button id="bk">💾 Backup</button><button id="rs2">📂 Restore</button><input type="file" id="fi" accept=".json,application/json" hidden></div></main>
+<div id="toast"></div><canvas id="cv"></canvas>
+<script>
+var D=[["Matematika","Matematika","Bilangan bulat, pecahan, persen, FPB, dan KPK","20 soal dasar"],["Matematika","Matematika","Aljabar, persamaan linear, dan SPLDV","25 soal"],["Matematika","Matematika","Pangkat, akar, pola bilangan, dan teori bilangan","25 soal"],["Matematika","Matematika","Perbandingan, skala, dan aritmetika sosial","20 soal cerita"],["Matematika","Matematika","Geometri, Pythagoras, dan bangun ruang","25 soal"],["Matematika","Matematika","Statistika, peluang, dan kombinatorika","25 soal"],["Evaluasi","Evaluasi Matematika","Ulang materi sulit dan latihan campuran","Tryout Matematika"],["Fisika","Fisika","Besaran, satuan, pengukuran, dan gerak","20 soal"],["Fisika","Fisika","Gaya, Hukum Newton, usaha, dan energi","25 soal"],["Fisika","Fisika","Tekanan, fluida, suhu, dan kalor","25 soal"],["Fisika","Fisika","Gelombang, bunyi, cahaya, dan optik","20 soal"],["Fisika","Fisika","Listrik, rangkaian, dan magnet","25 soal"],["Kimia","Kimia","Unsur, senyawa, campuran, dan perubahan zat","25 soal"],["Evaluasi","Evaluasi IPA","Ulang materi Fisika dan Kimia dasar","Tryout 30 soal"],["Kimia","Kimia","Struktur atom dan sistem periodik","25 soal"],["Kimia","Kimia","Ikatan kimia, rumus, dan reaksi kimia","25 soal"],["Kimia","Kimia","Asam-basa, larutan, dan hukum dasar kimia","25 soal"],["Biologi","Biologi","Sel, jaringan, dan klasifikasi makhluk hidup","25 soal"],["Biologi","Biologi","Sistem pencernaan, pernapasan, dan peredaran darah","25 soal"],["Biologi","Biologi","Sistem ekskresi, saraf, indra, dan gerak","25 soal"],["Evaluasi","Evaluasi IPA","Genetika, fotosintesis, ekosistem, bioteknologi","Tryout IPA"],["Bahasa Indonesia","Bahasa Indonesia","Ide pokok, simpulan, dan informasi tersirat","20 soal"],["Bahasa Inggris","Bahasa Inggris","Vocabulary, grammar, tenses, dan reading","25 soal"],["Penalaran","Penalaran","Deret angka, analogi, logika, dan pola gambar","25 soal"],["Evaluasi","Review Matematika","Rumus dan materi yang paling sulit","Tryout berwaktu"],["Evaluasi","Review IPA","Fisika, Kimia, dan Biologi campuran","Tryout berwaktu"],["Evaluasi","Simulasi TKA","Latihan campuran seluruh mata pelajaran","Tryout lengkap"],["Evaluasi","Evaluasi akhir","Bahas kesalahan, hafalkan konsep penting, dan istirahat","Review ringan"]];
+var CL={Matematika:"#1F4E79",Fisika:"#C55A11",Kimia:"#548235",Biologi:"#00796B","Bahasa Indonesia":"#C00000","Bahasa Inggris":"#7030A0",Penalaran:"#BF8F00",Evaluasi:"#595959"};
+var HR=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],BL=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+var S0=new Date(2026,9,19),KEY="tka-done-v1",done={},filt="Semua";
+var NK="tka-notes-v1",notes={},open={};
+try{done=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){done={}}
+try{notes=JSON.parse(localStorage.getItem(NK)||"{}")}catch(e){notes={}}
+function saveN(){try{localStorage.setItem(NK,JSON.stringify(notes))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function noteHtml(i){return open[i]?'<div class="nt"><textarea class="nta" data-n="'+i+'" placeholder="Catatan: skor latihan, materi yang masih lemah, rumus penting…">'+esc(notes[i]||"")+'</textarea></div>':""}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
+function dt(i){return new Date(2026,9,19+i)}
+function dstr(i){var d=dt(i);return HR[d.getDay()]+", "+d.getDate()+" "+BL[d.getMonth()]+" 2026"}
+function tIdx(){var n=new Date();n=new Date(n.getFullYear(),n.getMonth(),n.getDate());return Math.round((n-S0)/864e5)}
+var chips=document.getElementById("chips"),list=document.getElementById("list");
+["Semua"].concat(Object.keys(CL)).forEach(function(k){var b=document.createElement("button");b.className="chip"+(k=="Semua"?" on":"");b.textContent=k;b.onclick=function(){filt=k;[].forEach.call(chips.children,function(c){c.classList.toggle("on",c==b)});render()};chips.appendChild(b)});
+function render(){
+  var t=tIdx(),h="",lastW=-1;
+  D.forEach(function(r,i){
+    if(filt!="Semua"&&r[0]!=filt)return;
+    var w=Math.floor(i/7);
+    if(w!=lastW&&filt=="Semua"){h+='<div class="wk"><span>Minggu '+(w+1)+'</span><span>'+D.slice(w*7,w*7+7).filter(function(_,j){return done[w*7+j]}).length+'/'+D.slice(w*7,w*7+7).length+' selesai</span></div>';lastW=w}
+    h+='<div class="card'+(done[i]?" done":"")+(i==t?" today":"")+'" data-i="'+i+'" style="--c:'+CL[r[0]]+';animation-delay:'+(Math.min(i,10)*35)+'ms"><div class="ck"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div><div class="info"><div class="dt">'+dstr(i)+'</div><div class="mp">'+r[1]+'</div><div class="mt">'+r[2]+'</div><span class="tg">🎯 '+r[3]+'</span>'+tmHtml(i)+noteHtml(i)+'</div>'+(i==t?'<span class="td">HARI INI</span>':'')+'<button class="nb'+(notes[i]?' has':'')+'" data-n="'+i+'" aria-label="Catatan">📝</button></div>';
+  });
+  list.innerHTML=h;stats();
+}
+var circ=351.86,shown=0;
+function stats(){
+  var n=Object.keys(done).filter(function(k){return done[k]}).length,N=D.length,p=Math.round(n/N*100),t=tIdx();
+  document.getElementById("arc").style.strokeDashoffset=circ*(1-n/N);
+  document.getElementById("frac").textContent=n+"/"+N+" target";
+  document.getElementById("rem").textContent=N-n;todayStat();
+  document.getElementById("left").textContent=Math.max(0,N-1-t);
+  var s=0,st=Math.min(t,N-1);if(st<0)st=-1;
+  for(var i=st;i>=0&&done[i];i--)s++;
+  if(st>=0&&!done[st]){s=0;for(var j=st-1;j>=0&&done[j];j--)s++}
+  document.getElementById("streak").textContent=s;
+  var a=shown,b=p,st0=performance.now();
+  (function f(x){var k=Math.min(1,(x-st0)/700);document.getElementById("pct").textContent=Math.round(a+(b-a)*k)+"%";if(k<1)requestAnimationFrame(f)})(st0);shown=p;
+  var m=p==100?"🏆 Luar biasa! Semua target selesai!":p>=75?"🚀 Hampir sampai, pertahankan!":p>=50?"💪 Sudah lebih dari separuh jalan!":p>=25?"🌱 Awal yang bagus, terus semangat!":n>0?"✨ Langkah pertama sudah dilakukan!":"Centang target pertamamu untuk mulai 👇";
+  document.getElementById("badge").textContent=m;
+}
+list.onclick=function(e){
+  var c=e.target.closest(".card");if(!c||e.target.closest(".nt"))return;if(e.target.closest(".tm")){var bt=e.target.closest(".tb");if(bt)timeAct(+c.dataset.i,bt.dataset.a);return}var i=+c.dataset.i;
+  if(e.target.closest(".nb")){open[i]=!open[i];var inf=c.querySelector(".info"),ex=inf.querySelector(".nt");if(ex)ex.remove();else{inf.insertAdjacentHTML("beforeend",noteHtml(i));inf.querySelector(".nta").focus()}return}
+  if(!done[i]&&secs(i)<10800){c.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(-5px)"},{transform:"translateX(0)"}],{duration:350});toast("⏱ Belajar dulu minimal 3 jam (baru "+fmt(secs(i))+")");return}
+  done[i]=!done[i];save();
+  c.classList.toggle("done",!!done[i]);stats();
+  if(done[i]){var r=c.querySelector(".ck").getBoundingClientRect();boom(r.left+15,r.top+15,Object.keys(done).filter(function(k){return done[k]}).length==D.length?260:36)}
+  var w=Math.floor(i/7),ws=c.previousElementSibling;
+};
+var TK="tka-time-v1",tm={sec:{},run:{}},tto;
+try{tm=JSON.parse(localStorage.getItem(TK)||"null")||tm}catch(e){}
+function saveT(){try{localStorage.setItem(TK,JSON.stringify(tm))}catch(e){}}
+function secs(i){return (tm.sec[i]||0)+(tm.run[i]?Math.floor((Date.now()-tm.run[i])/1000):0)}
+function fmt(s){return Math.floor(s/3600)+"j "+Math.floor(s%3600/60)+"m"}
+function toast(m){var e=document.getElementById("toast");e.textContent=m;e.classList.add("show");clearTimeout(tto);tto=setTimeout(function(){e.classList.remove("show")},2600)}
+function tmHtml(i){var s=secs(i),r=!!tm.run[i];return '<div class="tm" data-t="'+i+'"><div class="bar'+(s>=10800?' ok':'')+'"><i style="width:'+Math.min(100,s/108)+'%"></i></div><span class="tt">⏱ '+fmt(s)+' / 3j'+(s>=10800?' ✅':'')+'</span><button class="tb'+(r?' run':'')+'" data-a="tog">'+(r?'⏸ Jeda':'▶ Mulai')+'</button><button class="tb" data-a="sub">−15m</button><button class="tb" data-a="add">+15m</button></div>'}
+function updTm(el){var i=+el.dataset.t,s=secs(i),ok=s>=10800,b=el.querySelector(".bar"),was=b.classList.contains("ok"),r=!!tm.run[i];b.firstChild.style.width=Math.min(100,s/108)+"%";el.querySelector(".tt").textContent="⏱ "+fmt(s)+" / 3j"+(ok?" ✅":"");b.classList.toggle("ok",ok);if(ok&&!was&&r){var q=el.getBoundingClientRect();boom(q.left+40,q.top,60);toast("🎉 3 jam tercapai! Sekarang kamu bisa centang target")}var bt=el.querySelector('[data-a="tog"]');bt.className="tb"+(r?" run":"");bt.textContent=r?"⏸ Jeda":"▶ Mulai"}
+function todayStat(){var t=tIdx();document.getElementById("tdy").textContent=fmt(t>=0&&t<D.length?secs(t):0)}
+function refreshAll(){[].forEach.call(document.querySelectorAll(".tm"),updTm);todayStat()}
+function timeAct(i,a){if(a=="tog"){if(tm.run[i]){tm.sec[i]=secs(i);delete tm.run[i]}else{for(var k in tm.run){tm.sec[k]=secs(k);delete tm.run[k]}tm.run[i]=Date.now()}}else if(a=="add")tm.sec[i]=(tm.sec[i]||0)+900;else if(a=="sub")tm.sec[i]=Math.max(0,(tm.sec[i]||0)-900);saveT();refreshAll()}
+setInterval(function(){if(Object.keys(tm.run).length)refreshAll()},1000);
+document.getElementById("bk").onclick=function(){var b=new Blob([JSON.stringify({v:1,done:done,notes:notes,tm:tm})],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="backup-checklist-tka.json";document.body.appendChild(a);a.click();a.remove();toast("💾 Backup diunduh")};
+document.getElementById("rs2").onclick=function(){document.getElementById("fi").click()};
+document.getElementById("fi").onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);done=o.done||{};notes=o.notes||{};tm=o.tm||{sec:{},run:{}};save();saveN();saveT();shown=0;render();toast("✅ Data berhasil dipulihkan")}catch(x){toast("⚠️ File backup tidak valid")}};r.readAsText(f);e.target.value=""};
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
+list.addEventListener("input",function(e){var t=e.target;if(!t.classList.contains("nta"))return;var i=+t.dataset.n;if(t.value.trim())notes[i]=t.value;else delete notes[i];saveN();var b=t.closest(".card").querySelector(".nb");b.classList.toggle("has",!!notes[i])});
+document.getElementById("go").onclick=function(){filt="Semua";[].forEach.call(chips.children,function(c,k){c.classList.toggle("on",k==0)});render();var c=document.querySelector(".today")||document.querySelector('.card[data-i="'+Math.max(0,Math.min(D.length-1,tIdx()))+'"]');if(c)c.scrollIntoView({behavior:"smooth",block:"center"})};
+document.getElementById("reset").onclick=function(){if(confirm("Hapus semua centang?")){done={};save();shown=0;render()}};
+var cv=document.getElementById("cv"),cx=cv.getContext("2d"),P=[],run=false;
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener("resize",rs);
+function boom(x,y,n){if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;var cols=["#ff595e","#ffca3a","#8ac926","#1982c4","#6a4c93","#ff924c"];
+  for(var i=0;i<n;i++){var a=Math.random()*6.28,v=3+Math.random()*(n>100?9:5);P.push({x:n>100?innerWidth/2:x,y:n>100?innerHeight/3:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-3,s:4+Math.random()*5,c:cols[i%6],l:1,r:Math.random()*6})}
+  if(!run){run=true;requestAnimationFrame(tick)}}
+function tick(){cx.clearRect(0,0,cv.width,cv.height);
+  P=P.filter(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.2;p.vx*=.99;p.l-=.012;p.r+=.2;if(p.l<=0)return false;cx.globalAlpha=p.l;cx.fillStyle=p.c;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore();return true});
+  if(P.length)requestAnimationFrame(tick);else{run=false;cx.clearRect(0,0,cv.width,cv.height)}}
+render();
+</script></body></html>
